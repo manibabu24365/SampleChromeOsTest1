@@ -497,7 +497,7 @@ class NetflixTestCasesKotlin {
                 device.click(rightX, centerY)
                 device.waitForIdle()
                 println("Video forwarded by click.")
-
+        //MAnibabu
                 // Backward (click left side of the control)
                 device.click(leftX, centerY)
                 device.waitForIdle()
