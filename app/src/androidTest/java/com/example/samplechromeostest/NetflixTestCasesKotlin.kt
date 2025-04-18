@@ -41,12 +41,12 @@ class NetflixTestCasesKotlin {
             }
 
             // Step 2: Click Install to install "Netflix" app
-            /*val installButton = device.wait(Until.findObject(By.text("Install")), TIMEOUT)
+            val installButton = device.wait(Until.findObject(By.text("Install")), TIMEOUT)
             if (installButton != null) {
                 installButton.click()
-            }*/
+            }
 
-            clickInstallButton(device)
+           // clickInstallButton(device)
             //installOrUpdateNetflix()
 
             // Step 3: Wait for Installation
@@ -72,9 +72,11 @@ class NetflixTestCasesKotlin {
 
             if (clickIfExistsRes(device, "com.google.android.gms:id/cancel")) {
                 println("Close Icon  clicked")
-                //com.netflix.mediaclient:id/2131428747 ---Present Working-----
+                //com.netflix.mediaclient:id/2131428750---Present Working-----
+                //com.netflix.mediaclient:id/2131428747
                 //com.netflix.mediaclient:id/2131428749
-                if (clickIfExistsRes(device, "com.netflix.mediaclient:id/2131428747")) {
+
+                if (clickIfExistsRes(device, "com.netflix.mediaclient:id/2131428750")) {
                     println("Sign In  clicked")
                     loginWithEmailAndPassword()
 
@@ -130,9 +132,10 @@ class NetflixTestCasesKotlin {
     fun loginWithEmailAndPassword() {
         try {
             // Enter email
+            //com.netflix.mediaclient:id/2131428661
             //com.netflix.mediaclient:id/2131428658 ---- Working -----
             //com.netflix.mediaclient:id/2131428660
-            val emailField = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428658")), TIMEOUT)
+            val emailField = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428661")), TIMEOUT)
             if (emailField != null) {
                 emailField.text = "arcappstesting5@gmail.com" // Replace with your email
                 device.waitForIdle()
@@ -142,9 +145,10 @@ class NetflixTestCasesKotlin {
             }
 
             // Enter password
+            //2131428664
             //com.netflix.mediaclient:id/2131428661 ---- working -----
             //com.netflix.mediaclient:id/2131428663
-            val passwordField = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428661")), TIMEOUT)
+            val passwordField = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428664")), TIMEOUT)
             if (passwordField != null) {
                 passwordField.text = "ArcNetflix#123" // Replace with your password
                 device.waitForIdle()
@@ -154,9 +158,10 @@ class NetflixTestCasesKotlin {
             }
 
             // Click sign in
+            //2131428652
             //com.netflix.mediaclient:id/2131428649 --- Working
             //com.netflix.mediaclient:id/2131428651
-            val signInButton = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428649")), TIMEOUT)
+            val signInButton = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131428652")), TIMEOUT)
             if (signInButton != null) {
                 signInButton.click()
                 device.waitForIdle()
@@ -177,15 +182,16 @@ class NetflixTestCasesKotlin {
     fun clickFirstProfile() {
         try {
             // Find the GridView containing the profiles
+            //2131429207
             val profilesGridView: UiObject2? = device.wait(
-                Until.findObject(By.res("com.netflix.mediaclient:id/2131429229")),
+                Until.findObject(By.res("com.netflix.mediaclient:id/2131429232")),
                 TIMEOUT
             )
 
             if (profilesGridView != null) {
                 // Find all profile views within the GridView
                 val profileViews: List<UiObject2> = profilesGridView.findObjects(
-                    By.res("com.netflix.mediaclient:id/2131429202")
+                    By.res("com.netflix.mediaclient:id/2131429205")
                 )
 
                 if (profileViews.isNotEmpty()) {
@@ -210,63 +216,13 @@ class NetflixTestCasesKotlin {
         }
     }
 
-   /* @Test
-    fun clickFirstProfile() {
-        try {
-            // Wait for the GridView to appear
 
-            val gridViewExists = device.wait(Until.hasObject(By.res("com.netflix.mediaclient:id/2131429231")), TIMEOUT)
-            if (gridViewExists) {
-                val profilesGridView = device.findObject(By.res("com.netflix.mediaclient:id/2131429231"))
-
-                val profileViews = profilesGridView.findObjects(By.res("com.netflix.mediaclient:id/2131429204"))
-
-                if (profileViews.isNotEmpty()) {
-                    val firstProfile = profileViews[0]
-
-                    // Scroll to the profile if needed.
-                    val bounds = firstProfile.visibleBounds
-                    val visibleCenter = firstProfile.visibleCenter
-
-                    val centerX = bounds.left + bounds.width() / 2
-                    val centerY = bounds.top + bounds.height() / 2
-
-                    *//*if (visibleCenter.x != centerX || visibleCenter.y != centerY) {
-                        firstProfile.parent.scroll(UiObject2.Direction.SCROLL_FORWARD)
-                        device.waitForIdle()
-                    }*//*
-
-                    // Attempt to click the profile
-                    if (firstProfile.isClickable) {
-                        firstProfile.click()
-                        device.waitForIdle()
-                        println("First profile clicked.")
-                        if(clickIfExistsRes(device,"com.netflix.mediaclient:id/2131427605")) {
-                            System.out.println("Allow clicked");
-                            clickSearchButton()
-
-                        }
-
-                    } else {
-                        System.err.println("First profile is not clickable.")
-                    }
-                } else {
-                    System.err.println("No profile views found.")
-                }
-            } else {
-                System.err.println("Grid view not found.")
-            }
-        } catch (e: Exception) {
-            System.err.println("Error during profile selection: ${e.message}")
-            e.printStackTrace()
-        }
-    }*/
 
     @Test
     fun clickAllowNotifications() {
         try {
             // Attempt to find the "Allow" button using various locators
-            val allowButton: UiObject2? = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131427605").text("Allow")), TIMEOUT)
+            val allowButton: UiObject2? = device.wait(Until.findObject(By.res("com.netflix.mediaclient:id/2131427606").text("Allow")), TIMEOUT)
                 ?: device.wait(Until.findObject(By.desc("Allow")), TIMEOUT)
                 ?: device.wait(Until.findObject(By.clickable(true).text("Allow")), TIMEOUT)
 
@@ -275,6 +231,7 @@ class NetflixTestCasesKotlin {
                     allowButton.click()
                     device.waitForIdle()
                     println("Allow button clicked.")
+                    clickAllowNotifications2()
                 } else {
                     System.err.println("Allow button is not clickable.")
                 }
@@ -298,6 +255,7 @@ class NetflixTestCasesKotlin {
                 allowButton.click()
                 device.waitForIdle()
                 println("Allow button clicked.")
+                clickSearchButton()
             } else {
                 System.err.println("Allow button not found.")
             }
@@ -376,7 +334,7 @@ class NetflixTestCasesKotlin {
             // Find the "The Good Doctor" ImageView
             //2131428787
             val theGoodDoctorImage: UiObject2? = device.wait(Until.findObject(
-                By.res("com.netflix.mediaclient:id/2131428787").desc("The Good Doctor")
+                By.res("com.netflix.mediaclient:id/2131428790").desc("The Good Doctor")
             ), TIMEOUT)
 
             if (theGoodDoctorImage != null) {
@@ -405,7 +363,7 @@ class NetflixTestCasesKotlin {
             // Find the "Resume" Button by resource ID
             //2131429081
             val resumeButton: UiObject2? = device.wait(Until.findObject(
-                By.res("com.netflix.mediaclient:id/2131429081")
+                By.res("com.netflix.mediaclient:id/2131429084")
             ), TIMEOUT)
 
             if (resumeButton != null) {
@@ -428,32 +386,7 @@ class NetflixTestCasesKotlin {
     }
 
 
-    /*private fun captureScreenshot(testName: String) {
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val fileName = "${testName}_$timestamp.png"
-        val path = Environment.getExternalStorageDirectory().toString() + "/Screenshots/"
 
-        val dir = File(path)
-        if (!dir.exists()) {
-            dir.mkdirs()
-        }
-
-        val file = File(path, fileName)
-
-        try {
-            val bitmap = device.takeScreenshot()
-            FileOutputStream(file).use { out ->
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
-            }
-            println("Screenshot saved: ${file.absolutePath}")
-        } catch (e: IOException) {
-            System.err.println("Failed to save screenshot: ${e.message}")
-            e.printStackTrace()
-        } catch (e: SecurityException) {
-            System.err.println("Security Exception, check permissions: ${e.message}")
-            e.printStackTrace()
-        }
-    }*/
 
 
     fun clickInstallButton(device: UiDevice) {
